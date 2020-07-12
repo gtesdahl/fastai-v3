@@ -29,7 +29,9 @@ function analyze() {
   xhr.onload = function(e) {
     if (this.readyState === 4) {
       var response = JSON.parse(e.target.responseText);
-      el("result-label").innerHTML = `Result = ${response["result"]} Number of Reviews`;
+      var dict = {2: "High", 1: "Medium", 0: "Low"};
+      var result_converted = dict[response["result"]]
+      el("result-label").innerHTML = `Result = ${result_converted} Number of Reviews`;
     }
     el("analyze-button").innerHTML = "Analyze";
   };
